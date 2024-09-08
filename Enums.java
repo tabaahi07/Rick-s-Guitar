@@ -1,5 +1,5 @@
 public class Enums{
-	public enum Builder {
+	public enum InsBuilder {
 	    Fender, Gibson, Ibanez, PRS, Yamaha, Epiphone, ESP, Jackson, Charvel, Schecter
 	} 
 
@@ -11,7 +11,7 @@ public class Enums{
 	    Acoustic, Electric
 	}
 
-	public enum Wood {
+	public static enum Wood {
 	    Alder, Mahogany, Basswood, Ash , Maple, Rosewood, Ebony
 	}
 
