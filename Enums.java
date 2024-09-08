@@ -20,7 +20,7 @@ public class Enums{
 	}
 
 	public enum Style{
-		
+		A , F 
 	}
 
 	public enum InstrumentType{

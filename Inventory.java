@@ -24,9 +24,9 @@ public class Inventory {
 	}  
 
 	public ArrayList<Instrument> search(InstrumentSpecifications searchInstrumentSpecs) {
-		ArrayList<Guitar> customerChoiceInstrumentList = new ArrayList<Guitar>() ;
+		ArrayList<Instrument> customerChoiceInstrumentList = new ArrayList<Instrument>() ;
 		for (Iterator i = instrumentList.iterator(); i.hasNext(); ) {
-			Instrument instrument = i.next() ;
+			Instrument instrument = (Instrument)i.next() ;
 			if(instrument.getSpecs().matches(searchInstrumentSpecs)) customerChoiceInstrumentList.add(instrument) ;	
 		} 
 		return customerChoiceInstrumentList ;
@@ -35,7 +35,7 @@ public class Inventory {
 	public static void main(String[] args){
 		Inventory obj = new Inventory() ;
 
-	    obj.addInstrument(Instrument.createGuitar("01", 500.50, Enums.InsBuilder.Fender, Enums.Model.Stratocaster, Enums.Type.Electric, Enums.Wood.Alder, Enums.Wood.Maple , Enums.NoOfStrings.Twelve);
+	    obj.addInstrument(Instrument.createGuitar("01", 500.50, Enums.InsBuilder.Fender, Enums.Model.Stratocaster, Enums.Type.Electric, Enums.Wood.Alder, Enums.Wood.Maple , Enums.NoOfStrings.Twelve));
         obj.addInstrument(Instrument.createGuitar("02", 450.75, Enums.InsBuilder.Gibson, Enums.Model.Les_Paul, Enums.Type.Electric, Enums.Wood.Mahogany, Enums.Wood.Rosewood));
         obj.addInstrument(Instrument.createGuitar("03", 300.30, Enums.InsBuilder.Ibanez, Enums.Model.RG, Enums.Type.Electric, Enums.Wood.Basswood, Enums.Wood.Maple));
         obj.addInstrument(Instrument.createGuitar("04", 750.25, Enums.InsBuilder.PRS, Enums.Model.Custom_24, Enums.Type.Electric, Enums.Wood.Mahogany, Enums.Wood.Maple));
@@ -51,16 +51,22 @@ public class Inventory {
         obj.addInstrument(Instrument.createGuitar("14", 485.75, Enums.InsBuilder.Schecter, Enums.Model.Hellraiser, Enums.Type.Electric, Enums.Wood.Mahogany, Enums.Wood.Maple));
         obj.addInstrument(Instrument.createGuitar("15", 510.60, Enums.InsBuilder.Fender, Enums.Model.Mustang, Enums.Type.Electric, Enums.Wood.Alder, Enums.Wood.Maple));
 
-  
-		GuitarSpecifications CutuIdealGuitar = new GuitarSpecifications(Enums.InsBuilder.Gibson , null , null , null , null , Enums.NoOfStrings.Twelve);
-		ArrayList<Guitar> idealGuitarList = obj.search(CutuIdealGuitar) ;
-		if(idealGuitarList.isEmpty()) System.out.println("No guitar found") ;
+        obj.addInstrument(Instrument.createMandolin("14", 485.75, Enums.InsBuilder.Schecter, Enums.Model.Hellraiser, Enums.Type.Electric, Enums.Wood.Mahogany, Enums.Wood.Maple , Enums.Style.A));
+        obj.addInstrument(Instrument.createMandolin("15", 510.60, Enums.InsBuilder.Fender, Enums.Model.Mustang, Enums.Type.Electric, Enums.Wood.Alder, Enums.Wood.Maple,Enums.Style.F));
+
+  		
+		InstrumentSpecifications CutuIdealInstrumentSpecs = InstrumentSpecifications.builder()
+			.instrumentType(Enums.InstrumentType.Mandolin) ;
+
+
+		ArrayList<Instrument> idealInstrumentList = obj.search(CutuIdealInstrumentSpecs) ;
+		if(idealInstrumentList.isEmpty()) System.out.println("No instrument found") ;
 		else{
-			for (Iterator i = idealGuitarList.iterator(); i.hasNext(); ) {
-				Guitar guitar = (Guitar)i.next() ;
-				System.out.println(guitar) ;
+			for (Iterator i = idealInstrumentList.iterator(); i.hasNext(); ) {
+				Instrument instrument = (Instrument)i.next() ;
+				System.out.println(instrument) ;
 			}
 		}
-	}  
+	} 
 	
 }
