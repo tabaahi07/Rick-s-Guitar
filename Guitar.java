@@ -1,41 +1,25 @@
-public class Guitar {
-	private String serialNumber, builder, model, type, backWood, topWood;
-	private double price;
-	
+public class Guitar extends Instrument {
+	private GuitarSpecifications specs ;
+
 	public Guitar(String serialNumber, double price,
-		String builder, String model, String type,
-		String backWood, String topWood) {
-		
-		this.serialNumber = serialNumber;
-		this.price = price;
-		this.builder = builder;
-		this.model = model;
-		this.type = type;
-		this.backWood = backWood;
-		this.topWood = topWood;
+		Enums.Builder builder , Enums.Model model, Enums.Type type,
+		Enums.Wood backWood, Enums.Wood topWood , Enums.NoOfStrings noOfStrings) {
+		super(serialNumber , price) ;
+		this.specs = new GuitarSpecifications(builder , model , type , backWood , topWood , noOfStrings) ;
 	}
-	public String getSerialNumber() {
-		return serialNumber;
+	
+	public GuitarSpecifications getSpecs(){
+		return specs ;
 	}
-	public double getPrice() {
-		return price;
+	
+	public String toString(){
+		return String.format("%4s , %f , %12s , %12s , %12s , %12s , %12s , %6s"  , this.getSerialNumber() ,  
+		this.getPrice() ,
+		this.specs.getBuilder() ,
+		this.specs.getModel() ,
+		this.specs.getType() ,
+		this.specs.getBackWood()  , 
+		this.specs.getTopWood() , 
+		this.specs.getNoOfStrings()) ;
 	}
-	public void setPrice(double newPrice) {
-		this.price = newPrice;
-	}
-	public String getBuilder() {
-		return builder;
-	}
-	public String getModel() {
-		return model;
-	}
-	public String getType() {
-		return type;
-	}
-	public String getBackWood() {
-		return backWood;
-	}
-	public String getTopWood() {
-		return topWood;
-	}
-}
+} 
